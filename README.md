@@ -11,11 +11,11 @@
 ||
 
 # การติดตั้ง Icinga
-ในการติดตั้ง Icinga จะต้องมี
+การติดตั้ง Icinga จะประกอบด้วย 3 ส่วนตาม สถาปัตยกรรม ของ Icinga คือ Icinga Core , IDODB และ Icinga Web
 <p align="center"> <img src="Screenshots\Icinga_Architecture_v1.5.png"alt="Paris"></p>
 
 
-## ขั้นตอนที่ 1: สร้าง Container ใน Proxmox
+## การ สร้าง Container ใน Proxmox เพื่อติดตั้ง Icinga
 ในการติดตั้ง Container ใน Proxmox สามารถทำได้เหมือนที่อธิบายไปใน [SPCN-011](https://github.com/phisic1714/SPCN-011#%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-container-template-%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%88%E0%B8%B2%E0%B8%81-ct-list) แต่จะมีการปรับเปลี่ยนค่าในเรื่องของ Network และ DNS ดังนี้
 
 * ส่วน Network
@@ -33,8 +33,9 @@
 
 
 
-
-## ขั้นตอนที่ 2: ติดตั้ง Apache, MariaDB และ PHP
+## ส่วน IDODB
+จะเป็นส่วนที่เป็นฐานข้อมูลการ Monitor Network ต่างๆ โดยรับข้อมูลจาก Icinga Core และส่งข้อมูลไป Icinga Web การเก็บจะใช้รูปแบบ Mysql ใช้ฐานข้อมูล MariaDB ในการสร้างตาราง
+### ขั้นตอนที่ 1: ติดตั้ง Apache, MariaDB และ PHP
 1. เราเริ่มต้นด้วยการติดตั้ง Apache, MariaDB และ PHP ด้วยชุดคำสั่งนี้
 
         $ apt install apache2 mariadb-server mariadb-client mariadb-common php php-gd php-mbstring php-mysqlnd php-curl php-xml php-cli php-soap php-intl php-xmlrpc php-zip  php-common php-opcache php-gmp php-imagick php-pgsql -y
@@ -59,7 +60,9 @@
 
         $ systemctl restart apache2
 
-## ขั้นตอนที่ 3: ติดตั้ง Icinga2 บน Ubuntu
+## ส่วน Icinga Core
+ส่วนที่จะทำการประมวณผลการ Monitor Network ที่รับมาจาก Icinga Web จึงต้องใช้ IDO Module ส่งข้อมูลไปเก็บใน IDODB 
+### ขั้นตอนที่ 1: ติดตั้ง Icinga2 บน Ubuntu
 
 1. อัพเดต apt และติดตั้ง Icinga2 และปลั๊กอินการตรวจสอบ
 
@@ -80,7 +83,7 @@
 
 ผลลัพธ์บ่งชี้ว่า Icinga2 daemon กำลังทำงานและเราพร้อมดำเนินการ
 
-## ขั้นตอนที่ 4: ติดตั้ง Icinga2 IDO Module
+### ขั้นตอนที่ 2: ติดตั้ง Icinga2 IDO Module
 Icinga2 Data Output (IDO) ส่งออกข้อมูลการกำหนดค่าและสถานะทั้งหมดไปยังฐานข้อมูล ฐานข้อมูล IDO ถูกใช้โดย Icinga Web 2 เป็นแบ็กเอนด์ข้อมูล
 
 1. ติดตั้ง IDO Module ให้รันคำสั่ง
@@ -105,7 +108,7 @@ Icinga2 Data Output (IDO) ส่งออกข้อมูลการกำห
 
         $ mysql -u root -p [ชื่อฐานข้อมูล] < /usr/share/icinga2-ido-mysql/schema/mysql.sql
 
-## ขั้นตอนที่ 5: เปิดใช้งาน Icinga2 IDO Module
+### ขั้นตอนที่ 3: เปิดใช้งาน Icinga2 IDO Module
 
 ในการเปิดใช้งานการสื่อสารฐานข้อมูล icinga2-ido-mysql กับ Icinga Web 2 เราจำเป็นต้องดำเนินการอีกขั้นและทำการเปลี่ยนแปลงไฟล์การกำหนดค่าเริ่มต้น
 
@@ -127,7 +130,9 @@ database = "[ชื่อฐานข้อมูล]"
         
         $ systemctl restart icinga2 
 
-## ขั้นตอนที่ 6: ติดตั้งและตั้งค่า IcingaWeb2
+## ส่วน Icinga Web
+จะเป็นส่วนสุดท้ายในการติดตั้งเพื่อแสดงข้อมูลการ Monitor Network ผ่าน Web UI ก็จะต้องมีการตั้งค่า API เพื่อให้เครื่องหลักที่มีการติดตั้ง Icinga สามารถติดต่อกับ Icinga Web ได้
+### ขั้นตอนที่ 1: ติดตั้งและตั้งค่า IcingaWeb2
 
 องค์ประกอบสุดท้ายในการติดตั้งและกำหนดค่าคือ IcingaWeb 2 ซึ่งเป็นเฟรมเวิร์ก PHP ที่รวดเร็ว ทรงพลัง และขยายได้ ซึ่งทำหน้าที่เป็นส่วนหน้าของ Icinga2
 
@@ -158,7 +163,7 @@ $ mysql -u root -p
 ผลที่ได้ Token ของผมจะเป็น "dd5c38558c9afa2f"
 
 
-## ขั้นตอนที่ 7: เปิดใช้งาน VPN
+### ขั้นตอนที่ 2: เปิดใช้งาน VPN
 
 เราจะเปิดใช้งาน VPN เพื่อให้เครื่อง Host เราสามารถเชื่อมต่อกับ Server ใน Promox เพื่อนำ IP ของ Container ที่เราสร้างมาเข้าหน้าเว็ป Icingaweb2 ได้ 
 1. โหลดโปรแกรมที่ให้บริการ VPN ในที่นี้ผมจะใช้ [OpenVPN](https://openvpn.net/vpn-client/) 
@@ -171,7 +176,7 @@ $ mysql -u root -p
 <p align="center"> <img src="Screenshots\215325.png"alt="Paris"></p>
     
 
-## ขั้นตอนที่ 8: ตั้งค่าในหน้าเว็ป Icingaweb2 และเปิดใช้งาน
+### ขั้นตอนที่ 3: ตั้งค่าในหน้าเว็ป Icingaweb2 และเปิดใช้งาน
 1. เปิดหน้าตั้งค่าเว็ป Icingaweb2 จะใช้ 
 
         http://เลข IP ของ Container/icingaweb2/setup
@@ -221,52 +226,164 @@ $ mysql -u root -p
 <p align="center"> <img src="Screenshots\(81).png"alt="Paris"></p>
 
 # การใช้งาน Icingaweb2
+## การจัดการ Dashboard
+1. จากหน้าหลักให้กดปุ่ม Drop Down ตามรูป เมื่อกดไปจะมีปุ่ม Add Dashlet
+<p align="center"> <img src="Screenshots\().png"alt="Paris"></p>
 
-# การอ่านผลลัพธ์ของ Icingaweb2
+2. จากนั้นจะได้หน้าแบบนี้ 
+
+<p align="center"> <img src="Screenshots\2023-01-02 220744.png"alt="Paris"></p>
+
+- ในช่อง Url ให้กรอก Url ของ Dashlet ที่เราต้องการเช่น หน้าแสดง Host ที่ได้ url จากในหน้านี้ 
+<p align="center"> <img src="Screenshots\ภาพหน้าจอ (103).png"alt="Paris"></p> 
+
+- ในช่อง Dashlet Title ให้ตั้งชื่อ Dashlet ที่จะให้แสดงใน Dashboard
+- ในช่อง Dropdown ของ Dashboard จะให้เราเลือก หน้าแถบ Dashboard ที่เราต้องการจะให้ไปแสดง ถ้าอยากสร้างใหม่เองให้ ติ๊กปุ่ม New dashboard 
+
+3. ผลที่ได้ก็จะได้ Dashboard ใหม่
+<p align="center"> <img src="Screenshots\ภาพหน้าจอ (102).png"alt="Paris"></p> 
+
+## การสร้าง Host
+การสร้าง Host เพื่อจะ Monitor IP เป้าหมาย โดยวิธีดังนี้
+1. เข้าไปแก้ไขใน File โดยใช้คำสั่งนี้
+        
+        $ nano /etc/icinga2/conf.d/hosts.conf
+2. เมื่อเข้ามาแล้วให้เขียน Scripts เพื่อสร้าง Object ในการสร้าง Host ตามนี้
+        
+        object Host "ชื่อHostที่จะตั้ง"{
+                import "Templateที่ต้องการ"
+                address = "ที่อยู่IPที่ต้องการ"
+                check_command = "คำสั่งในการตรวจสอบสถานะ"
+        }
+        
+หรือในรูปตัวอย่างนี้
+<p align="center"> <img src="Screenshots\2023-01-06 210257.png"alt="Paris"></p> 
+
+3. Restart icinga โดยใช้คำสั่ง 
+        
+        $ systemctl restart icinga2 
+
+4. ผลที่ได้ดังรูปนี้
+<p align="center"> <img src="Screenshots\ภาพหน้าจอ (103).png"alt="Paris"></p> 
+
+## การใช้ SNMP ในการ Monitor
+1. สร้าง Service ใหม่ เข้าไปแก้ไขใน File โดยใช้คำสั่งนี้
+
+        $ nano /etc/icinga2/conf.d/services.conf
+    แล้วใช้ script นี้ในการสร้าง service
+
+        apply Service "uptime" {
+        import "generic-service"
+
+        check_command = "snmp"
+        vars.snmp_oid = "1.3.6.1.2.1.1.3.0"
+        vars.snmp_miblist = "DISMAN-EVENT-MIB"
+
+        assign where host.vars.agent_type == "snmp" && host.vars.snmp_community != ""
+        }
+
+
+2. สร้าง Template ใหม่ เข้าไปแก้ไขใน File โดยใช้คำสั่งนี้
+
+        $ nano /etc/icinga2/conf.d/templates.conf
+   แล้วใช้ script นี้ในการสร้าง Template
+
+        template Host "snmp-agent" {
+                check_command = "hostalive"
+
+                vars.agent_type = "snmp"
+
+                vars.snmp_community = "public-icinga"
+                }        
+
+
+3. ให้ Host ที่จะใช้ SNMP ให้ import Template snmp-agent เช่น
+        
+        object Host "ชื่อHostที่จะตั้ง"{
+                import "snmp-agent"
+                address = "ที่อยู่IPที่ต้องการ"
+                check_command = "คำสั่งในการตรวจสอบสถานะ"
+        } 
+
+4. ผลที่ได้ก็จะมีส่วน Custom Variables ที่มี Parameter agent_type กับ snmp_community ที่เพิ่มเข้ามาตามที่เราสร้าง Template 
+<p align="center"> <img src="Screenshots\2023.png"alt="Paris"></p>
+
+และมี service uptime ที่เพิ่มเข้ามาตามที่เราสร้าง Service ไว้และมีการตรวจสอบสถานะของ SNMP
+
+<p align="center"> <img src="Screenshots\2023-01-06 235546.png"alt="Paris"></p>
+
+# การอ่านผลลัพธ์ Icingaweb2
+การอ่าน Monitor ของ Host หรือ Service จะอ่านสถานะของ Host หรือ Service ได้ในลักษณะนี้
+<p align="center"> <img src="Screenshots\2023-01-06 235546.png"alt="Paris"></p>
+
+ซึ่งแต่ล่ะสถานะก็จะมีความหมาย ดังนี้
 
 <table style="width:100%">
 <tr>
-    <th colspan="2"><p align="center"> สถานะของ Host </p></th>
+    <th colspan="3"><p align="center"> สถานะของ Host </p></th>
 </tr>
   <tr>
     <th>สถานะ</th>
     <th>คำอธิบาย</th>
+    <th>สี</th>
   </tr>
   <tr>
     <td>UP</td>
     <td>Host ยังทำงานอยู่</td>
+        <td style="color:lightgreen;">เขียว</td>
   </tr>
   <tr>
     <td>DOWN</td>
     <td>Host ไม่ทำงาน</td>
+    <td style="color:red;">แดง</td>
   </tr>
 </table>
 <table style="width:100%">
 <tr>
-    <th colspan="2"><p align="center"> สถานะของ Service </p></th>
+    <th colspan="3"><p align="center"> สถานะของ Service </p></th>
 </tr>
   <tr>
     <th>สถานะ</th>
     <th>คำอธิบาย</th>
+        <th>สี</th>
   </tr>
   <tr>
     <td>OK</td>
     <td>Service ไม่มีปัญหา</td>
+    <td style="color:lightgreen;">เขียว</td>
   </tr>
   <tr>
     <td>WARNING</td>
     <td>Service กำลังมีปัญหา</td>
+    <td style="color:orange;">ส้ม</td>
   </tr>
   <tr>
     <td>CRITICAL</td>
     <td>Service เกิดความเสียหาย</td>
+    <td style="color:red;">แดง</td>
   </tr>
   <tr>
     <td>UNKNOWN</td>
-    <td>ไม่พบ Service</td>
+    <td>ไม่สามารถระบุ Service</td>
+    <td style="color:#D462FF;">ม่วง</td>
   </tr>
 </table>
+
+ส่วนรายละเอียดการ Monitor ของ Host ก็จะมีส่วนที่สำคัญในการดู ดังนี้
+
+-  Plugin Output และ Performance data
+
+    เป็นส่วนที่แสดงเรื่องของการ Ping IP ของ Host ถ้าการ Ping มีปัญหาก็จะส่งผลถึงการแสดงสถานะของ Host หรือ Service
+
+    <p align="center"> <img src="Screenshots\2025.png"alt="Paris"></p>
+
+- Check execution
+
+  เป็นส่วนแสดงการตรวจสถานะของ Host ที่จะมีการบอกเวลาในการตรวจสอบสถานะครั้งล่าสุด และปัจจุบัน ใน Parameter Last check และ Next check และการบอกถึงสถานะการเข้าถึงโดย Parameter Reachable ถ้า Host มีปัญหาจุดนี้ก็จะแจ้งเตือนด้วย
+
 ----
+
+ref: https://icinga.com/docs/icinga-2/latest/doc/01-about/
 
 
 
