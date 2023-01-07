@@ -1,7 +1,7 @@
 # SPCN-NMS
 <p align="center"><a href="https://pve22.ipv9.me/#v1:0:18:4:::::::"> <img src="Screenshots/logo.png"width=300 alt="Paris"></a><a href="http://172.31.0.211/icingaweb2"> <img src="Screenshots\Icinga_logo.svg"width=300 alt="Paris"></a></p>
 
-# <p align="center">การใช้งาน Icinga ผ่าน Container ใน Proxmox</p>
+# <p align="center">การติดตั้ง และการใช้งาน Icinga ผ่าน Container ใน Proxmox</p>
 
 |<p align="center"> สารบัญ </p>| 
 | ------------- |
