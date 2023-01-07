@@ -6,12 +6,15 @@
 |<p align="center"> สารบัญ </p>|
 | ------------- |
 |[การติดตั้ง Icinga](#การติดตั้ง-icinga)|
-|[การใช้งาน Icinga](#สร้าง-vm-จาก-os-ตัวอื่นๆ)|
-|[สร้าง container template (เลือกจาก CT list)](#สร้าง-container-template-เลือกจาก-ct-list)|
-|<DL>[การตั้งค่าต่างๆใน vm ](#การตั้งค่าต่างๆใน-vm)<DT>[\|-การเปิดใช้ qemu guest agent](#การเปิดใช้-qemu-guest-agent)<DT><DT>[ \|-การตั้ง local time update](#การตั้ง-local-time-update)</DT><DT>[\|-การ reset machineid ไม่ให้ ip ชนกัน กับ vm ตัวอื่น](#การ-reset-machineid-ไม่ให้-ip-ชนกัน-กับ-vm-ตัวอื่น)<DT></DL>|
+|[การใช้งาน Icingaweb2](#การใช้งาน-icingaweb2)|
+|[การอ่านผลลัพธ์ของ Icingaweb2](#การอ่านผลลัพธ์ของ-icingaweb2)|
+||
 
 # การติดตั้ง Icinga
-ในการติดตั้งเราจะใช้ Icinga2 ซึ่งเป็น version ล่าสุด โดยจะใช้ Icingaweb2 ในการเป็นหน้าเว็ปแสดง Dashboard ของ Network Monitoring และ จะใช้ ฐานข้อมูล MariaDB ในการเก็บข้อมูล Network Monitoring 
+ในการติดตั้ง Icinga จะต้องมี
+<p align="center"> <img src="Screenshots\Icinga_Architecture_v1.5.png"alt="Paris"></p>
+
+
 ## ขั้นตอนที่ 1: สร้าง Container ใน Proxmox
 ในการติดตั้ง Container ใน Proxmox สามารถทำได้เหมือนที่อธิบายไปใน [SPCN-011](https://github.com/phisic1714/SPCN-011#%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-container-template-%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%88%E0%B8%B2%E0%B8%81-ct-list) แต่จะมีการปรับเปลี่ยนค่าในเรื่องของ Network และ DNS ดังนี้
 
@@ -217,4 +220,8 @@ $ mysql -u root -p
 สำหรับผมคือ http://172.31.0.211/icingaweb2/ ได้เลย
 <p align="center"> <img src="Screenshots\(81).png"alt="Paris"></p>
 
+# การใช้งาน Icingaweb2
+
+# การอ่านผลลัพธ์ของ Icingaweb2
 ----
+
