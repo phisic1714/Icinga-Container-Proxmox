@@ -3,7 +3,7 @@
 
 # <p align="center">การใช้งาน Icinga ผ่าน Container ใน Proxmox</p>
 
-|<p align="center"> สารบัญ </p>|
+|<p align="center"> สารบัญ </p>| 
 | ------------- |
 |[การติดตั้ง Icinga](#การติดตั้ง-icinga)|
 |[การใช้งาน Icingaweb2](#การใช้งาน-icingaweb2)|
@@ -223,5 +223,50 @@ $ mysql -u root -p
 # การใช้งาน Icingaweb2
 
 # การอ่านผลลัพธ์ของ Icingaweb2
+
+<table style="width:100%">
+<tr>
+    <th colspan="2"><p align="center"> สถานะของ Host </p></th>
+</tr>
+  <tr>
+    <th>สถานะ</th>
+    <th>คำอธิบาย</th>
+  </tr>
+  <tr>
+    <td>UP</td>
+    <td>Host ยังทำงานอยู่</td>
+  </tr>
+  <tr>
+    <td>DOWN</td>
+    <td>Host ไม่ทำงาน</td>
+  </tr>
+</table>
+<table style="width:100%">
+<tr>
+    <th colspan="2"><p align="center"> สถานะของ Service </p></th>
+</tr>
+  <tr>
+    <th>สถานะ</th>
+    <th>คำอธิบาย</th>
+  </tr>
+  <tr>
+    <td>OK</td>
+    <td>Service ไม่มีปัญหา</td>
+  </tr>
+  <tr>
+    <td>WARNING</td>
+    <td>Service กำลังมีปัญหา</td>
+  </tr>
+  <tr>
+    <td>CRITICAL</td>
+    <td>Service เกิดความเสียหาย</td>
+  </tr>
+  <tr>
+    <td>UNKNOWN</td>
+    <td>ไม่พบ Service</td>
+  </tr>
+</table>
 ----
+
+
 
