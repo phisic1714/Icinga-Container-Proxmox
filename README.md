@@ -285,7 +285,7 @@ $ mysql -u root -p
 
         assign where host.vars.agent_type == "snmp" && host.vars.snmp_community != ""
         }
-
+        
 
 2. สร้าง Template ใหม่ เข้าไปแก้ไขใน File โดยใช้คำสั่งนี้
 
@@ -300,8 +300,27 @@ $ mysql -u root -p
                 vars.snmp_community = "public-icinga"
                 }        
 
+3. เข้าไปใน Container ที่จะ Monitor ให้ติดตั้ง Package SNMP คำสั่งนี้
 
-3. ให้ Host ที่จะใช้ SNMP ให้ import Template snmp-agent เช่น
+        $ apt-get install snmp
+        
+   จากนั้นให้เข้าไปตั้งค่าในไฟล์ snmpd ด้วยคำสั่งนี้
+   
+        $ nano /etc/snmp/snmpd.conf
+        
+   จากนั้นในไฟล์ให้แก้ Script 
+   
+        agentaddress เลขIPเครื่อง, [::1]  
+        
+        และ 
+        
+        rocommunity ชื่อCommunity 
+        
+        ดังรูปตัวอย่าง
+        
+        
+
+4. ต่อมาในเครื่องหลักให้สร้าง Host ที่จะใช้ SNMP ให้ import Template snmp-agent เช่น
         
         object Host "ชื่อHostที่จะตั้ง"{
                 import "snmp-agent"
@@ -309,7 +328,7 @@ $ mysql -u root -p
                 check_command = "คำสั่งในการตรวจสอบสถานะ"
         } 
 
-4. ผลที่ได้ก็จะมีส่วน Custom Variables ที่มี Parameter agent_type กับ snmp_community ที่เพิ่มเข้ามาตามที่เราสร้าง Template 
+5. ผลที่ได้ก็จะมีส่วน Custom Variables ที่มี Parameter agent_type กับ snmp_community ที่เพิ่มเข้ามาตามที่เราสร้าง Template 
 <p align="center"> <img src="Screenshots\2023.png"alt="Paris"></p>
 
 และมี service uptime ที่เพิ่มเข้ามาตามที่เราสร้าง Service ไว้และมีการตรวจสอบสถานะของ SNMP
