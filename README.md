@@ -321,10 +321,12 @@ $ mysql -u root -p
         
     ดังรูปตัวอย่าง
         
-        <p align="center"> <img src="Screenshots\สกรีนช็อต 2023-01-08 172418.png"alt="Paris"></p> 
+    <p align="center"> <img src="Screenshots\สกรีนช็อต 2023-01-08 172418.png"alt="Paris"></p> 
         
         
+    จากนั้น Restart snmpd ด้วยคำสั่งนี้
         
+        $ systemctl restart snmpd
 
 4. ต่อมาในเครื่องหลักให้สร้าง Host ที่จะใช้ SNMP ให้ import Template snmp-agent เช่น
         
