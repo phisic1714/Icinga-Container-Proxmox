@@ -300,7 +300,7 @@ $ mysql -u root -p
                 vars.snmp_community = "public-icinga"
                 }        
 
-3. เข้าไปใน Container ที่จะ Monitor ให้ติดตั้ง Package SNMP คำสั่งนี้
+3. เข้าไปใน Container ที่จะ Monitor ให้ติดตั้ง Package SNMP ใช้คำสั่งนี้
 
         $ apt-get install snmp
         
@@ -312,11 +312,17 @@ $ mysql -u root -p
    
         agentaddress เลขIPเครื่อง, [::1]  
         
-        และ 
+        
+    และ 
+        
         
         rocommunity ชื่อCommunity 
         
-        ดังรูปตัวอย่าง
+        
+    ดังรูปตัวอย่าง
+        
+        <p align="center"> <img src="Screenshots\สกรีนช็อต 2023-01-08 172418.png"alt="Paris"></p> 
+        
         
         
 
