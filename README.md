@@ -386,10 +386,17 @@ $ mysql -u root -p
 - Check execution
 
   เป็นส่วนแสดงการตรวจสถานะของ Host ที่จะมีการบอกเวลาในการตรวจสอบสถานะครั้งล่าสุด และปัจจุบัน ใน Parameter Last check และ Next check และการบอกถึงสถานะการเข้าถึงโดย Parameter Reachable ถ้า Host มีปัญหาจุดนี้ก็จะแจ้งเตือนด้วย
+  
+ref: https://icinga.com/docs/icinga-2/latest/doc/01-about/
 
 ----
 
-ref: https://icinga.com/docs/icinga-2/latest/doc/01-about/
+ผู้จัดทำ : 
+https://github.com/phisic1714
+https://github.com/NightingX9
+https://github.com/pitkann
+https://github.com/ploysry
+
 
 
 
