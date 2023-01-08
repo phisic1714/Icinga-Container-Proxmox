@@ -392,10 +392,13 @@ ref: https://icinga.com/docs/icinga-2/latest/doc/01-about/
 ----
 
 ผู้จัดทำ : 
-https://github.com/phisic1714
-https://github.com/NightingX9
-https://github.com/pitkann
-https://github.com/ploysry
+- นาย พีรพัฒน์ สาริมาน  https://github.com/phisic1714
+        
+- นาย กันต์ศักดิ์ ไชยมงคล https://github.com/NightingX9
+        
+- นางสาว พิชญ์กัญ วงศ์ธนะเชษฐ https://github.com/pitkann
+
+- นางสาว ศรัณยา ทะลาสี https://github.com/ploysry
 
 
 
