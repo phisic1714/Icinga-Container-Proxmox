@@ -5,7 +5,7 @@
 -----
 
 # สารบัญ
-|<p align="center"> สารบัญ </p>| 
+|<p align="center"> เนื้อหา </p>| 
 | ------------- |
 |<DL>[การติดตั้ง Icinga](#การติดตั้ง-icinga)<DT>[\|-ส่วน IDODB](#ส่วน-idodb)<DT><DT>[\|-ส่วน Icinga Core](#ส่วน-icinga-core)<DT><DT>[\|-ส่วน Icinga Web](#ส่วน-icinga-web)</DT></DL>|
 |<DL>[การใช้งาน Icingaweb2](#การใช้งาน-icingaweb2)<DT>[\|-การจัดการ Dashboard](#การจัดการ-dashboard)<DT><DT>[\|-การสร้าง Host](#การสร้าง-host)<DT>[\|-การใช้ SNMP ในการ Monitor](#การใช้-snmp-ในการ-monitor)</DT></DL>|
