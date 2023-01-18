@@ -4,7 +4,7 @@
 
 -----
 
-# SPCN-NMS
+# สารบัญ
 |<p align="center"> สารบัญ </p>| 
 | ------------- |
 |<DL>[การติดตั้ง Icinga](#การติดตั้ง-icinga)<DT>[\|-ส่วน IDODB](#ส่วน-idodb)<DT><DT>[\|-ส่วน Icinga Core](#ส่วน-icinga-core)<DT><DT>[\|-ส่วน Icinga Web](#ส่วน-icinga-web)</DT></DL>|
@@ -13,7 +13,7 @@
 
 
 # การติดตั้ง Icinga
-[top⬆️](#spcn-nms)
+[top⬆️](#สารบัญ)
 
 การติดตั้ง Icinga จะประกอบด้วย 3 ส่วนตาม สถาปัตยกรรม ของ Icinga คือ Icinga Core , IDODB และ Icinga Web
 <p align="center"> <img src="Screenshots\Icinga_Architecture_v1.5.png"alt="Paris"></p>
@@ -230,7 +230,7 @@ $ mysql -u root -p
 <p align="center"> <img src="Screenshots\(81).png"alt="Paris"></p>
 
 # การใช้งาน Icingaweb2
-[top⬆️](#spcn-nms)
+[top⬆️](#สารบัญ)
 
 ## การจัดการ Dashboard
 1. จากหน้าหลักให้กดปุ่ม Drop Down ตามรูป เมื่อกดไปจะมีปุ่ม Add Dashlet
@@ -346,7 +346,7 @@ $ mysql -u root -p
 <p align="center"> <img src="Screenshots\2023-01-06 235546.png"alt="Paris"></p>
 
 # การอ่านผลลัพธ์ Icingaweb2
-[top⬆️](#spcn-nms)
+[top⬆️](#สารบัญ)
 
 การอ่าน Monitor ของ Host หรือ Service จะอ่านสถานะของ Host หรือ Service ได้ในลักษณะนี้
 <p align="center"> <img src="Screenshots\2023-01-06 235546.png"alt="Paris"></p>
