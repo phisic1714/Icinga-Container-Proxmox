@@ -119,7 +119,7 @@ Icinga2 Data Output (IDO) ส่งออกข้อมูลการกำห
 1. เปิดไฟล์การกำหนดค่า icinga2-ido-mysql
 
         $ nano /etc/icinga2/features-available/ido-mysql.conf
-แก้ไขรายการต่อไปนี้และตั้งค่าให้ตรงกับรายละเอียดฐานข้อมูล icinga2-ido-mysql ตามที่ระบุไว้ใน [ขั้นตอนที่ 4](#ขั้นตอนที่-4-ติดตั้ง-icinga2-ido-module)
+แก้ไขรายการต่อไปนี้และตั้งค่าให้ตรงกับรายละเอียดฐานข้อมูล icinga2-ido-mysql ตามที่ระบุไว้ใน [ส่วน Icinga Core ขั้นตอนที่ 2 ข้อที่ 2](#ขั้นตอนที่-2-ติดตั้ง-icinga2-ido-module)
 
         user ="[ชื่อผู้ใช้]",
         password="[รหัส]",
@@ -187,7 +187,7 @@ $ mysql -u root -p
 
 สำหรับผมคือ http://172.31.0.211/icingaweb2/setup 
 
-2. เมื่อเข้ามาแล้วนำ Token ที่ได้มาจาก [ส่วน Icinga Web ขั้นตอนที่ 1 ข้อที่ 3](#ขั้นตอนที่-1:-ติดตั้งและตั้งค่า-IcingaWeb2) มากรอกลงช่ิอง
+2. เมื่อเข้ามาแล้วนำ Token ที่ได้มาจาก [ส่วน Icinga Web ขั้นตอนที่ 1 ข้อที่ 3](#ขั้นตอนที่-1-ติดตั้งและตั้งค่า-icingaweb2) มากรอกลงช่ิอง
 <p align="center"> <img src="Screenshots\(82).png"alt="Paris"></p>
 
 3. ต่อมาให้ติ๊กเลือก Module ไหนก็ได้ที่ต้องการใช้ แต่ที่ต้องใช้คือ Monitoring 
@@ -197,7 +197,7 @@ $ mysql -u root -p
 
 <p align="center"> <img src="Screenshots\(84).png"alt="Paris"></p>
 
-5. ต่อมาหน้านี้ให้เรากรอกข้อมูลของฐานข้อมูลที่เราสร้างใน [ส่วน Icinga Web ขั้นตอนที่ 1 ข้อที่ 2](#ขั้นตอนที่-1:-ติดตั้งและตั้งค่า-IcingaWeb2)
+5. ต่อมาหน้านี้ให้เรากรอกข้อมูลของฐานข้อมูลที่เราสร้างใน [ส่วน Icinga Web ขั้นตอนที่ 1 ข้อที่ 2](#ขั้นตอนที่-1-ติดตั้งและตั้งค่า-icingaweb2)
 
 <p align="center"> <img src="Screenshots\(85).png"alt="Paris"></p>
 
@@ -205,7 +205,7 @@ $ mysql -u root -p
 
 <p align="center"> <img src="Screenshots\(86).png"alt="Paris"></p>
 
-7. ต่อมาหน้านี้ให้เรากรอกข้อมูลของฐานข้อมูลที่เราสร้างใน [ส่วน Icinga Core ขั้นตอนที่ 2 ข้อที่ 2 ](#ขั้นตอนที่-2:-ติดตั้ง-Icinga2-IDO-Module) 
+7. ต่อมาหน้านี้ให้เรากรอกข้อมูลของฐานข้อมูลที่เราสร้างใน [ส่วน Icinga Core ขั้นตอนที่ 2 ข้อที่ 2 ](#ขั้นตอนที่-2-ติดตั้ง-icinga2-ido-module) 
 
 <p align="center"> <img src="Screenshots\(87).png"alt="Paris"></p>
 
